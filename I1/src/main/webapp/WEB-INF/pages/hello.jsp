@@ -9,7 +9,7 @@
         <title>Cześć</title>
     </head>
     <body>
-        <h1>Cześć ${message}</h1>
+        <h1>Cześć czołem ${message}</h1>
 
 		<table>
 		<c:forEach var="user" items="${users}">
