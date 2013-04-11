@@ -22,7 +22,6 @@ public class Person implements Serializable {
 	@Column(name="ENABLED")
 	private boolean enabled;
 	
-	
 	public Long getId() {
 		return id;
 	}
