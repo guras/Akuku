@@ -17,7 +17,6 @@ public class ProjectReport implements Serializable {
 	private int id;
 	private Color color;
 	private Project project;
-	@ManyToOne
 	private WeeklyReport weeklyReport;
 	private String mainAchievements;
 	private String doneLastWeek;

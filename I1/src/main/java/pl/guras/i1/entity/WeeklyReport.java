@@ -6,8 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,8 +25,8 @@ public class WeeklyReport implements Serializable {
 	
 	private String lowlights;
 	
-	@OneToOne
-	@Column(name = "USER_ID")
+	@ManyToOne
+	@JoinColumn(name = "USER_ID")
 	private Person user;
 	
 	@Column(name = "REPORT_WEEK")
@@ -34,7 +35,7 @@ public class WeeklyReport implements Serializable {
 	@Column(name = "REPORT_YEAR")
 	private int year;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "weeklyReport")
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<ProjectReport> projectReports;
 
 	public Long getId() {
