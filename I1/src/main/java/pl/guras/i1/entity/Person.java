@@ -3,6 +3,7 @@ package pl.guras.i1.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,6 +22,7 @@ public class Person implements Serializable {
 	public static final String GET_PERSON_BY_USERNAME = "getPersonByUserName";
 	
 	@Id
+	@GeneratedValue
 	@Column(name = "USER_ID")
 	private Long id;
 	@Column(name = "USERNAME")
