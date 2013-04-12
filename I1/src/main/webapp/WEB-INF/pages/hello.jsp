@@ -9,17 +9,8 @@
         <title>Cześć</title>
     </head>
     <body>
-        <h1>Cześć czołem ${message}</h1>
-
-		<table>
-		<c:forEach var="user" items="${users}">
-		<tr>
-			<td>${user.id}</td>
-			<td>${user.name}</td>
-			<td>${user.enabled}</td>
-		</tr>
-		</c:forEach>
-		</table>
+        <h1>Cześć ${personalities}</h1>
+		<h3>Zaraportuj co robiłeś</h3>
 
 
 	<a href="<c:url value='j_spring_security_logout' />" > Logout</a>

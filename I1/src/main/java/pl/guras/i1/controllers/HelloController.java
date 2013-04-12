@@ -1,6 +1,5 @@
 package pl.guras.i1.controllers;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -8,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.guras.i1.dao.Person;
 import pl.guras.i1.dao.PersonDao;
+import pl.guras.i1.entity.Person;
 
 /**
  * @author guras
@@ -26,12 +25,10 @@ public class HelloController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String name = user.getUsername();
-		model.addAttribute("message", "joł : " + name);
-		
-		List<Person> users = dao.getPersons();
-				
-		model.addAttribute("users", users);
+		Person loggedUser = dao.getPerson(user.getUsername());
+
+		model.addAttribute("personalities", loggedUser.getName() + " " + loggedUser.getSurname());		
+
 		return VIEW_WELCOME;
 	}
 

@@ -7,15 +7,13 @@ import javax.persistence.Query;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import pl.guras.i1.entity.Person;
 
 @Repository
 public class PersonDaoImpl implements PersonDao {
 
 	protected EntityManager entityManager;
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
 	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
@@ -24,13 +22,19 @@ public class PersonDaoImpl implements PersonDao {
 	@Transactional
 	@Override
 	public List<Person> getPersons() throws DataAccessException {
-		Query query = getEntityManager().createQuery("select c from Person c");
+		Query query = entityManager.createQuery("select c from Person c");
 		List<Person> resultList = query.getResultList();
 		return resultList;
 	}
 	@Transactional
 	@Override
 	public Person getPerson(Long UserId) throws DataAccessException {
-		return getEntityManager().find(Person.class, UserId);
+		return entityManager.find(Person.class, UserId);
+	}
+
+	@Override
+	public Person getPerson(String userName) throws DataAccessException {
+		Query query = entityManager.createNamedQuery(Person.GET_PERSON_BY_USERNAME);
+		return (Person)query.getSingleResult();
 	}
 }
