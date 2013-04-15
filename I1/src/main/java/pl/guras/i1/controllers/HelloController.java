@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.guras.i1.dao.PersonDao;
 import pl.guras.i1.entity.Person;
+import pl.guras.i1.entity.Project;
 
 /**
  * @author guras
@@ -27,8 +28,7 @@ public class HelloController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Person loggedUser = dao.getPerson(user.getUsername());
 
-		model.addAttribute("personalities", loggedUser.getName() + " " + loggedUser.getSurname());		
-
+		model.addAttribute("personalities", loggedUser.getName() + " " + loggedUser.getSurname());
 		return VIEW_WELCOME;
 	}
 

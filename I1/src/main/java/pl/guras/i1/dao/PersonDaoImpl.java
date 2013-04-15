@@ -35,6 +35,8 @@ public class PersonDaoImpl implements PersonDao {
 	@Override
 	public Person getPerson(String userName) throws DataAccessException {
 		Query query = entityManager.createNamedQuery(Person.GET_PERSON_BY_USERNAME);
+		query.setParameter("username", userName);
 		return (Person)query.getSingleResult();
 	}
 }
+
