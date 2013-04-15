@@ -16,13 +16,14 @@ public class WeeklyReport implements Serializable {
 	public static final String GET_WEEKLY_REPORT_BY_WEEK_AND_YEAR = "getWeeklyReportByWeekAndYear";
 	
 	@Id
+	@GeneratedValue
 	private Long id;
 	
 	private String highlights;
 	
 	private String lowlights;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "USER_ID")
 	private Person user;
 	
