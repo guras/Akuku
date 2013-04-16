@@ -1,16 +1,13 @@
 package pl.guras.i1.report.generator;
 
 import static pl.guras.i1.report.generator.ReportGenerator.StyleId.*;
-import java.io.*;
+import java.io.File;
 import java.math.BigInteger;
 import java.net.URL;
 import java.util.List;
-import org.docx4j.dml.wordprocessingDrawing.Inline;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import org.docx4j.openpackaging.parts.WordprocessingML.*;
-import org.docx4j.wml.*;
 import org.docx4j.convert.in.xhtml.XHTMLImporter;
-import org.joda.time.DateTime;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.docx4j.wml.*;
 
 public class ReportGenerator {
 	
@@ -34,57 +31,9 @@ public class ReportGenerator {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		URL url = new URL("");
-		InputStream inputStream = url.openStream();
 		WordprocessingMLPackage wmlPackage = WordprocessingMLPackage.createPackage();
-		wmlPackage.getMainDocumentPart().getContent().addAll(XHTMLImporter.convert(inputStream, null, wmlPackage));
+		wmlPackage.getMainDocumentPart().getContent().addAll(XHTMLImporter.convert(new URL("http://localhost:8080/I1-1.0-SNAPSHOT/report"), wmlPackage));
 		wmlPackage.save(new File("C:/szkolenie/test.docx"));
-	}
-	
-	public void generateReport() throws Exception {
-		DateTime dateTime = new DateTime();
-		int week = dateTime.weekOfWeekyear().get();
-		
-		WordprocessingMLPackage wmlPackage = WordprocessingMLPackage.createPackage();
-		MainDocumentPart mainDocumentPart = wmlPackage.getMainDocumentPart();
-		List<Style> styles = mainDocumentPart.getStyleDefinitionsPart().getJaxbElement().getStyle();
-
-		addDefaultStyle(styles);
-		addTitleStyle(styles);
-		addLowlightsStyle(styles);
-		addHighlightsStyle(styles);
-		addTeamStyle(styles);
-		addProjectsStyle(styles);
-		addProjectNameStyle("yellow", styles);
-		
-		addReportTitleSection(mainDocumentPart);
-		addReportLowlightsSection(mainDocumentPart);
-		addReportHighlightsSection(mainDocumentPart);
-		addReportProjectsSection(mainDocumentPart);
-		addReportTeamSection(mainDocumentPart);
-		addReportImageSection(wmlPackage);
-		
-		wmlPackage.save(new File("C:/szkolenie/GSE SDG Gdansk Team weekly report W" + week + ".docx"));
-	}
-	
-	private void addReportTitleSection(MainDocumentPart mainDocumentPart) {
-		mainDocumentPart.addStyledParagraphOfText(TITLE, "GSE SDG Gdansk Team weekly report Week 15/2013");
-	}
-	
-	private void addReportLowlightsSection(MainDocumentPart mainDocumentPart) {
-		mainDocumentPart.addStyledParagraphOfText(LOWLIGHTS, "Lowlights");
-	}
-	
-	private void addReportHighlightsSection(MainDocumentPart mainDocumentPart) {
-		mainDocumentPart.addStyledParagraphOfText(HIGHLIGHTS, "Highlights");
-	}
-	
-	private void addReportProjectsSection(MainDocumentPart mainDocumentPart) {
-		mainDocumentPart.addStyledParagraphOfText(PROJECTS, "Projects:");
-	}
-	
-	private void addReportTeamSection(MainDocumentPart mainDocumentPart) {
-		mainDocumentPart.addStyledParagraphOfText(TEAM, "Team:");
 	}
 	
 	private void addColor(String value, RPr rpr) {
@@ -197,21 +146,5 @@ public class ReportGenerator {
 		addTextHighlight(highlightColor, rpr);
 		
 		styles.add(createStyle(PROJECT_NAME, rpr, null));
-	}
-	
-	private void addReportImageSection(WordprocessingMLPackage wmlPackage) throws Exception {
-		BinaryPartAbstractImage imagePart = BinaryPartAbstractImage.createImagePart(wmlPackage, new File(getClass().getResource("/images/report_colors.png").toURI()));
-		Inline imageInline = imagePart.createImageInline(null, null, 0, 1, false);
-		
-		ObjectFactory factory = new ObjectFactory();
-		P  p = factory.createP();
-		R  r = factory.createR();             
-		Drawing drawing = factory.createDrawing();
-		
-		p.getContent().add(r);
-		r.getContent().add(drawing);
-		drawing.getAnchorOrInline().add(imageInline);
-		
-		wmlPackage.getMainDocumentPart().addObject(p);
 	}
 }

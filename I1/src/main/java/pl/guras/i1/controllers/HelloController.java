@@ -26,8 +26,8 @@ public class HelloController {
 	public String printWelcome(ModelMap model) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Person loggedUser = dao.getPerson(user.getUsername());
-
-		model.addAttribute("personalities", loggedUser.getName() + " " + loggedUser.getSurname());		
+		
+		model.addAttribute("personalities", loggedUser.getFirstname() + " " + loggedUser.getLastname());		
 
 		return VIEW_WELCOME;
 	}

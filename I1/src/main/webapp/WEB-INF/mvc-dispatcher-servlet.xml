@@ -7,10 +7,10 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
  
-	<context:component-scan base-package="pl.guras.i1.controllers" />
- 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  	<context:annotation-config/>
+	<context:component-scan base-package="pl.guras.i1.controllers,pl.guras.i1.dao,pl.guras.i1.service" />
+ 	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>

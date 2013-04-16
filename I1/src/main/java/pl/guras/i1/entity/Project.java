@@ -1,19 +1,46 @@
 package pl.guras.i1.entity;
 
+import java.io.Serializable;
+import javax.persistence.*;
+
 /**
  * @author mgorecki
  */
-public enum Project {
-	CHOCKAPIC("C1"), CHEERIOS("C2")	, NESQUICK("N1");
-
+@SuppressWarnings("serial")
+@Entity
+public class Project implements Serializable {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false, length = 255)
+	private String name;
+	
+	@Column(nullable = false, length = 20)
 	private String code;
 
-	private Project(String code) {
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCode(String code) {
 		this.code = code;
 	}
-	
-	public String code() {
-		return this.code;
-	}
-	
 }
