@@ -1,8 +1,10 @@
 package pl.guras.i1.entity;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
+import org.joda.time.DateTime;
 
 /**
  * @author mgorecki
@@ -14,6 +16,15 @@ import javax.persistence.*;
 public class WeeklyReport implements Serializable {
 	
 	public static final String GET_WEEKLY_REPORT_BY_WEEK_AND_YEAR = "getWeeklyReportByWeekAndYear";
+	
+	public WeeklyReport() {
+		DateTime dateTime = new DateTime();
+
+		this.week = dateTime.getWeekOfWeekyear();
+		this.year = dateTime.getYear();
+		this.projectReports = new LinkedList<ProjectReport>();
+		projectReports.add(new ProjectReport());
+	}
 	
 	@Id
 	@GeneratedValue

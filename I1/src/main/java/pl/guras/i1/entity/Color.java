@@ -8,4 +8,8 @@ public enum Color {
 	Color(int color) {
 		this.value = color;
 	}
+	
+	public int getColorValue() {
+		return value;
+	}
 }

@@ -12,31 +12,38 @@
         <title>Cześć</title>
     </head>
     <body>
+		
+		<h1>${aaa}</h1><br/>
         <h1>Cześć ${personalities}</h1><br/><a href="<c:url value='j_spring_security_logout' />" > Logout</a>
-		<h3>Zaraportuj co robiłeś:</h3>
+		<h3>Zaraportuj co robiłeś w ${weeklyReport.week} tygodniu ${weeklyReport.year} roku:</h3>
 
-		<form:form name="weeklyReport" action="" method="POST">
-			<form:select path="">
-				<c:forEach items="projects" var="project">
-					<form:option label="${project}" value="${project}"></form:option>
-				</c:forEach>
-			</form:select>
-		</form:form>
-		
-		
-		
-		
-		<form action="" method="POST" class="">
+		<form:form name="weeklyReport" modelAttribute="weeklyReport" action="save" method="POST">
+
+			<form:label path="highlights">Highlights</form:label><br/>
+			<form:textarea path="highlights"/><br/>
+			<form:label path="lowlights">Lowlights</form:label><br/>
+			<form:textarea path="lowlights" /><br/>
 			
-
-			<label for="mainAchievements">Main achievements:</label><br/>
-			<textarea name="mainAchievements"></textarea><br/>
-			<label for="doneLastWeek">Done last week:</label><br/>
-			<textarea name="doneLastWeek"></textarea><br/>
-			<label for="nextSteps">Next steps:</label><br/>
-			<textarea name="nextSteps"></textarea><br/>
-		</form>
-
+			<h2>Projekt:</h2>
+			<form:select path="projectReports[0].project">
+				<form:options items="${projects}"></form:options>
+			</form:select>
+			<form:select path="projectReports[0].color">
+				<form:options items="${colors}"></form:options>
+			</form:select>
+			<br/>
+			<form:label path="projectReports[0].mainAchievements">mainAchievements</form:label><br/>
+			<form:input path="projectReports[0].mainAchievements"/><br/>
+			<form:label path="projectReports[0].doneLastWeek">doneLastWeek</form:label><br/>
+			<form:input path="projectReports[0].doneLastWeek"/><br/>
+			<form:label path="projectReports[0].nextSteps">nextSteps</form:label><br/>
+			<form:input path="projectReports[0].nextSteps"/><br/>
+			<form:label path="projectReports[0].edc">edc</form:label><br/>
+			<form:input path="projectReports[0].edc"/><br/>
+			<form:label path="projectReports[0].etc">etc</form:label><br/>
+			<form:input path="projectReports[0].etc"/><br/>
+			<input type="submit" value="Wyślij"/>
+		</form:form>
 
 	</body>
 </html>
