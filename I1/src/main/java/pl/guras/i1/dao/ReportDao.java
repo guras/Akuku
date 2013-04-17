@@ -1,11 +1,11 @@
 package pl.guras.i1.dao;
 
+import static pl.guras.i1.entity.WeeklyReport.*;
 import static pl.guras.i1.entity.ProjectReport.*;
-import java.util.*;
+import java.util.List;
 import javax.persistence.*;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
-import pl.guras.i1.entity.*;
 import pl.guras.i1.model.*;
 
 @Repository
@@ -16,7 +16,7 @@ public class ReportDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<HighlightsLowlights> getAllHighlightsLowlightsByWeekAndYear(DateTime dateTime) {
-		return (List<HighlightsLowlights>) executeQuery(WeeklyReport.GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, dateTime);
+		return (List<HighlightsLowlights>) executeQuery(GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, dateTime);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -28,6 +28,7 @@ public class ReportDao {
 	public List<ProjectReportByEmployee> getAllReportsByProjectNameAndWeekAndYear(String projectName, DateTime dateTime) {
 		Query query = manager.createNamedQuery(GET_ALL_REPORTS_BY_PROJECT_NAME_AND_WEEK_AND_YEAR);
 		query.setParameter("projectName", projectName);
+		
 		return (List<ProjectReportByEmployee>) executeQuery(query, dateTime);
 	}
 	
