@@ -45,10 +45,6 @@ public class ReportDao {
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
 		
-		try {
-			return query.getResultList();
-		} catch (PersistenceException exception) {
-			return Collections.emptyList();
-		}
+		return query.getResultList();
 	}
 }

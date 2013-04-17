@@ -39,10 +39,13 @@ public class ProjectReport implements Serializable {
 	@JoinColumn(name = "weekly_report_id", referencedColumnName = "id") 
 	private WeeklyReport weeklyReport;
 	
+	@Column(name = "main_achievements")
 	private String mainAchievements;
 	
+	@Column(name = "done_last_week")
 	private String doneLastWeek;
 	
+	@Column(name = "next_steps")
 	private String nextSteps;
 	
 	private String edc;

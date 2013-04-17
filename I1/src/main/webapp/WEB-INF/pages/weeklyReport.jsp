@@ -79,6 +79,6 @@
 		
 		<br/><br/><br/>
 		
-		<img src="<c:url value="/images/report_colors.png"/>"/>
+		<img src="<c:url value="/images/report_colors.png"/>"/>		
 	</body>
 </html>
