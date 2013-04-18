@@ -26,7 +26,7 @@
 			
 			<h2>Projekt:</h2>
 			<form:select path="projectReports[0].project">
-				<form:options items="${projects}"></form:options>
+				<form:options items="${projects}" itemLabel="name" itemValue="id"></form:options>
 			</form:select>
 			<form:select path="projectReports[0].color">
 				<form:options items="${colors}"></form:options>
