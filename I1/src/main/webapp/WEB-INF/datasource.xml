@@ -36,8 +36,6 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 	<context:annotation-config />
 	<tx:annotation-driven mode="aspectj" transaction-manager="transactionManager" />
 
-	<bean id="reportDao" class="pl.guras.i1.dao.ReportDao"/>
-
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>

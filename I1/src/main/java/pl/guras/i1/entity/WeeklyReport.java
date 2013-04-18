@@ -10,12 +10,12 @@ import org.joda.time.DateTime;
  * @author mgorecki
  */
 @Entity
-@Table(name = "Weekly_Report")
+@Table(name = "weekly_report")
 @SuppressWarnings("serial")
-@NamedQuery(name = WeeklyReport.GET_WEEKLY_REPORT_BY_WEEK_AND_YEAR, query = "SELECT wr FROM WeeklyReport AS wr WHERE wr.week = ?1 AND wr.year = ?2")
+@NamedQuery(name = WeeklyReport.GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.HighlightsLowlights(wr.highlights, wr.lowlights) FROM WeeklyReport AS wr WHERE wr.week = :week AND wr.year = :year")
 public class WeeklyReport implements Serializable {
 	
-	public static final String GET_WEEKLY_REPORT_BY_WEEK_AND_YEAR = "getWeeklyReportByWeekAndYear";
+	public static final String GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR = "getAllHighlightsLowlightsByWeekAndYear";
 	
 	public WeeklyReport() {
 		DateTime dateTime = new DateTime();
@@ -27,7 +27,7 @@ public class WeeklyReport implements Serializable {
 	}
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String highlights;
@@ -35,16 +35,16 @@ public class WeeklyReport implements Serializable {
 	private String lowlights;
 	
 	@ManyToOne
-	@JoinColumn(name = "USER_ID")
+	@JoinColumn(name = "user_id")
 	private Person user;
 	
-	@Column(name = "REPORT_WEEK")
+	@Column(name = "report_week")
 	private int week;
 	
-	@Column(name = "REPORT_YEAR")
+	@Column(name = "report_year")
 	private int year;
 	
-	@OneToMany(mappedBy = "weeklyReport", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "weeklyReport")
 	private List<ProjectReport> projectReports;
 	
 	public Long getId() {

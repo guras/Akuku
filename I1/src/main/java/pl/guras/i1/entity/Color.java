@@ -5,11 +5,11 @@ public enum Color {
 	
 	private int value;
 	
-	Color(int color) {
+	private Color(int color) {
 		this.value = color;
 	}
 	
-	public int getColorValue() {
+	public int getValue() {
 		return value;
 	}
 }
