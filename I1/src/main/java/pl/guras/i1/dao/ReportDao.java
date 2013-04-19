@@ -50,7 +50,7 @@ public class ReportDao {
 		
 		return query.getResultList();
 	}
-
+	
 	@Transactional
 	public void save(WeeklyReport weeklyReport) {
 		LOG.info(weeklyReport.getProjectReports().get(0).getProject());

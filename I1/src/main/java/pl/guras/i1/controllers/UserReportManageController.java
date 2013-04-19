@@ -25,18 +25,15 @@ import pl.guras.i1.entity.Project;
 import pl.guras.i1.entity.WeeklyReport;
 
 @Controller
-public class HelloController {
+public class UserReportManageController {
 
-	private static final Logger LOG = Logger.getLogger(HelloController.class);
+	private static final Logger LOG = Logger.getLogger(UserReportManageController.class);
 	private static final String VIEW_WELCOME = "hello";
 	private static final String VIEW_LOGIN = "login";
-	
 	@Autowired
 	private PersonDao personDao;
-	
 	@Autowired
 	private ReportDao reportDao;
-	
 	@Autowired
 	private ProjectDao projectDao;
 
@@ -44,7 +41,11 @@ public class HelloController {
 	public String createOrUpdateReport(ModelMap model) {
 		Person loggedUser = getLoggedUser();
 
-		WeeklyReport weeklyReport = new WeeklyReport();
+		// TODO tutaj bêdziemy pobieraæ
+		WeeklyReport weeklyReport = null;
+		if (null == weeklyReport) {
+			weeklyReport = new WeeklyReport();
+		} 
 
 		model.addAttribute("personalities", loggedUser.getFirstname() + " " + loggedUser.getLastname());
 		model.addAttribute("colors", Color.values());
@@ -89,6 +90,20 @@ public class HelloController {
 			public void setAsText(String text) {
 				Project project = projectDao.findById(Integer.parseInt(text));
 				setValue(project);
+			}
+
+			@Override
+			public String getAsText() {
+				LOG.info("W ogole tu wchodze");
+				Project p = (Project) getValue();
+				LOG.info("W1");
+				if (null != p) {
+					LOG.info("W3");
+					return String.valueOf(p.getId());
+				}
+				LOG.info("W2");
+				return null;
+				
 			}
 		});
 	}
