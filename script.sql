@@ -60,3 +60,14 @@ CREATE TABLE `Project_Report` (
   PRIMARY KEY (ID),
   CONSTRAINT `FK_WEEKLYREPORT` FOREIGN KEY (`WEEKLYREPORT`) REFERENCES `WEEKLY_REPORT` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+use i1;
+alter table Project_Report change ID  ID INT(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+alter table Project_Report change MAIN_ACHEVEMENTS MAIN_ACHIEVEMENTS VARCHAR(4096);
+alter table Project_Report change DONELASTWEEK DONE_LAST_WEEK VARCHAR(4096);
+alter table Project_Report change NEXTSTEPS NEXT_STEPS VARCHAR(4096);
+alter table Project_Report change PROJECT PROJECT_ID VARCHAR(256) NOT NULL;
+
+ALTER TABLE project_report ADD COLUMN
+team_role varchar(50) NOT NULL;
+

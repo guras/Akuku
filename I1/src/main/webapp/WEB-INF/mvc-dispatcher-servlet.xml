@@ -1,18 +1,32 @@
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:context="http://www.springframework.org/schema/context"
 	   xmlns:mvc="http://www.springframework.org/schema/mvc"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:tx="http://www.springframework.org/schema/tx"
+<<<<<<< HEAD
+=======
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+>>>>>>> branch 'master' of https://github.com/guras/Akuku.git
 	   xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd
+<<<<<<< HEAD
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
         http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+=======
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd ">
+>>>>>>> branch 'master' of https://github.com/guras/Akuku.git
  
+<<<<<<< HEAD
   	<context:annotation-config/>
 	<context:component-scan base-package="pl.guras.i1.controllers,pl.guras.i1.dao,pl.guras.i1.service"/>
 	
@@ -29,4 +43,20 @@
   		<property name="suffix" value=".jsp"/>
  	</bean>
 	 	
+=======
+	<context:annotation-config/>
+	<context:component-scan base-package="pl.guras.i1.controllers,pl.guras.i1.dao,pl.guras.i1.service" />
+ 	
+	<tx:annotation-driven /> 
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+ 
+>>>>>>> branch 'master' of https://github.com/guras/Akuku.git
 </beans>

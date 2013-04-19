@@ -12,23 +12,19 @@
 		
 		<h3 class="lowlights">Lowlights</h3>
 		
-		<c:forEach var="hl" items="${report.highlightsLowlights}">
-			<p>- ${hl.lowlights}</p>
-		</c:forEach>
-		
+		${report.highlightsLowlights}
+				
 		<br/>
 		
 		<h3 class="highlights">Highlights</h3>
 		
-		<c:forEach var="hl" items="${report.highlightsLowlights}">
-			<p>- ${hl.highlights}</p>
-		</c:forEach>
-		
+		${report.highlightsLowlights}
+				
 		<br/><br/>
 		
 		<h3 class="projects">Projects:</h3>
 		
-		<c:forEach var="projectSummary" items="${report.projectSummaries}" >
+		<c:forEach var="projects" items="${report.projectReports}" >
 			<h4 class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}</h4>
 			
 			<ul>
