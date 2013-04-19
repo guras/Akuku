@@ -1,9 +1,7 @@
 package pl.guras.i1.dao;
 
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
 import org.springframework.stereotype.Repository;
 import pl.guras.i1.entity.Project;
 
@@ -21,8 +19,4 @@ public class ProjectDao {
 	public Project findById(Integer id) {
 		return (Project) em.find(Project.class, id);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/guras/Akuku.git

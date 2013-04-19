@@ -2,9 +2,9 @@ package pl.guras.i1.entity;
 
 import static pl.guras.i1.entity.WeeklyReport.*;
 import java.io.Serializable;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import org.joda.time.DateTime;
 
 @Entity
