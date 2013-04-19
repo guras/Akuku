@@ -4,9 +4,6 @@ import static pl.guras.i1.entity.ProjectReport.*;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/**
- * @author mgorecki
- */
 @Entity
 @Table(name = "project_report")
 @SuppressWarnings("serial")

@@ -21,4 +21,8 @@ public class ProjectDao {
 	public Project findById(Integer id) {
 		return (Project) em.find(Project.class, id);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/guras/Akuku.git

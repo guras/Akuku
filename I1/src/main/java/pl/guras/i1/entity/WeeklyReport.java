@@ -1,23 +1,28 @@
 package pl.guras.i1.entity;
 
+import static pl.guras.i1.entity.WeeklyReport.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.joda.time.DateTime;
 
-/**
- * @author mgorecki
- */
 @Entity
 @Table(name = "weekly_report")
 @SuppressWarnings("serial")
-@NamedQuery(name = WeeklyReport.GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.HighlightsLowlights(wr.highlights, wr.lowlights) FROM WeeklyReport AS wr WHERE wr.week = :week AND wr.year = :year")
+@NamedQueries
+({
+	@NamedQuery(name = GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.HighlightsLowlights(wr.highlights, wr.lowlights) FROM WeeklyReport AS wr WHERE wr.week = :week AND wr.year = :year"),
+	@NamedQuery(name = GET_REPORT_STATUS_FOR_EACH_EMPLOYEE_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.ReportStatusByEmployee(u.id, u.firstname, u.lastname, u.teamRole, CASE WHEN (SELECT COUNT(r) FROM WeeklyReport AS r WHERE r.user.id = u.id AND r.week = :week AND r.year = :year) > 0 THEN TRUE ELSE FALSE END) FROM WeeklyReport AS wr RIGHT OUTER JOIN wr.user AS u"),
+	@NamedQuery(name = GET_REPORT_BY_EMPLOYEE_ID, query = "SELECT wr FROM WeeklyReport AS wr FETCH JOIN wr.user AS u FETCH JOIN wr.projectReports AS pr WHERE u.id = :employeeId AND wr.week = :week AND wr.year = :year")
+})
 public class WeeklyReport implements Serializable {
 	
 	public static final String GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR = "getAllHighlightsLowlightsByWeekAndYear";
+	
+	public static final String GET_REPORT_STATUS_FOR_EACH_EMPLOYEE_BY_WEEK_AND_YEAR = "getReportStatusForEachEmployeeByWeekAndYear";
+	
+	public static final String GET_REPORT_BY_EMPLOYEE_ID = "getReportByEmployeeId";
 	
 	public WeeklyReport() {
 		DateTime dateTime = new DateTime();
@@ -25,7 +30,7 @@ public class WeeklyReport implements Serializable {
 		this.week = dateTime.getWeekOfWeekyear();
 		this.year = dateTime.getYear();
 		this.projectReports = new LinkedList<ProjectReport>();
-		projectReports.add(new ProjectReport(this));
+		projectReports.add(new ProjectReport());
 	}
 	
 	@Id
@@ -51,7 +56,7 @@ public class WeeklyReport implements Serializable {
 	private int year;
 	
 	@OneToMany(mappedBy = "weeklyReport", cascade = CascadeType.ALL)
-	private List<ProjectReport> projectReports; 
+	private List<ProjectReport> projectReports;
 	
 	public Long getId() {
 		return id;

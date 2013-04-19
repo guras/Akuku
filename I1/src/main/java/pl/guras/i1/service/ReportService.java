@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.guras.i1.dao.ReportDao;
 import pl.guras.i1.model.*;
+import pl.guras.i1.util.ProjectColorGenerator;
 
 @Service
 public class ReportService {
@@ -36,10 +37,12 @@ public class ReportService {
 	}
 
 	private ProjectSummary createProjectSummary(String projectName, DateTime dateTime) {
+		List<ProjectReportByEmployee> projectReports = reportDao.getAllReportsByProjectNameAndWeekAndYear(projectName, dateTime);
+		
 		ProjectSummary projectSummary = new ProjectSummary();
 		projectSummary.setProjectName(projectName);
-		projectSummary.setColor("");
-		projectSummary.setProjectReports(reportDao.getAllReportsByProjectNameAndWeekAndYear(projectName, dateTime));
+		projectSummary.setProjectReports(projectReports);
+		projectSummary.setColor(ProjectColorGenerator.generateProjectColor(projectReports));
 		
 		return projectSummary;
 	}

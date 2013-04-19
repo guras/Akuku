@@ -4,79 +4,27 @@
 
 <html>
 	<head>
-		<style type="text/css">
-			body {
-				font-family: Calibri;
-				font-size: 11pt;
-			}
-			
-			p, li {
-				margin: 5pt;
-			}
-			
-			.title, .lowlights, .highlights, .projects, .team {
-				font-weight: bold;
-				font-size: 14pt;
-			}
-			
-			.lowlights, .highlights, .projects, .projectName, .team {
-				margin: 10pt, 0pt;
-			}
-			
-			.title {
-				font-family: Tahoma;
-				text-align: center;
-				color: #993366;
-				padding-bottom: 30pt;
-				line-height: 30pt;
-			}
-			
-			.lowlights {
-				color: #FF0000;
-			}
-			
-			.highlights {
-				color: #32CD32;
-			}
-			
-			.team {
-				color: #48D1CC;
-			}
-			
-			.projectName {
-				font-weight: bold;
-				text-decoration: underline;
-				margin-top: 15pt;
-			}
-			
-			.image {
-				margin-top: 50pt;
-			}
-		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Report By Employee</title>
 	</head>
-	
 	<body>
-		<h1 class="title">GSE/SDG Gdansk Team weekly report<br/>Week ${report.week}/${report.year}</h1>
+		<h1 class="title">Weekly report by <br/>Week ${report.week}/${report.year}</h1>
 		
 		<h3 class="lowlights">Lowlights</h3>
 		
-		<c:forEach var="hl" items="${report.highlightsLowlights}">
-			<p>- ${hl.lowlights}</p>
-		</c:forEach>
-		
+		${report.highlightsLowlights}
+				
 		<br/>
 		
 		<h3 class="highlights">Highlights</h3>
 		
-		<c:forEach var="hl" items="${report.highlightsLowlights}">
-			<p>- ${hl.highlights}</p>
-		</c:forEach>
-		
+		${report.highlightsLowlights}
+				
 		<br/><br/>
 		
 		<h3 class="projects">Projects:</h3>
 		
-		<c:forEach var="projectSummary" items="${report.projectSummaries}" >
+		<c:forEach var="projects" items="${report.projectReports}" >
 			<h4 class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}</h4>
 			
 			<ul>
@@ -122,19 +70,5 @@
 				</li>
 			</ul>
 		</c:forEach>
-		
-		<br/>
-		
-		<h3 class="team">Team:</h3>
-		
-		<p>
-			Available Engineers:
-			
-			<c:forEach var="engineer" varStatus="status" items="${report.availableEngineers}">
-				${engineer.fullName}<c:if test="${not status.last}">, </c:if> 
-			</c:forEach> 
-		</p>
-		
-		<img class="image" src="<c:url value="/images/report_colors.png"/>"/>		
 	</body>
 </html>
