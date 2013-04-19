@@ -31,7 +31,7 @@ public class ReportController {
 	
 	@RequestMapping("/reportByEmployee")
 	public String getReportByEmplyee(@RequestParam long employeeId, Model model) {
-		model.addAttribute("report", reportDao.getReportByEmployeeId(employeeId, new DateTime()));
+	//	model.addAttribute("report", reportDao.getReportByEmployeeId(employeeId, new DateTime()));
 		return "reportByEmployee";
 	}
 }
