@@ -1,5 +1,6 @@
 package pl.guras.i1.dao;
 
+import static pl.guras.i1.entity.WeeklyReport.*;
 import static pl.guras.i1.entity.ProjectReport.*;
 import java.util.*;
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class ReportDao {
 	
 	@SuppressWarnings("unchecked")
 	public List<HighlightsLowlights> getAllHighlightsLowlightsByWeekAndYear(DateTime dateTime) {
-		return (List<HighlightsLowlights>) executeQuery(WeeklyReport.GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, dateTime);
+		return (List<HighlightsLowlights>) executeQuery(GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, dateTime);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -36,7 +37,19 @@ public class ReportDao {
 	public List<Employee> getAllAvailableEngineersByWeekAndYear(DateTime dateTime) {
 		return (List<Employee>) executeQuery(GET_ALL_AVAILABLE_ENGINEERS_BY_WEEK_AND_YEAR, dateTime);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public List<ReportStatusByEmployee> getReportStatusForEachEmployeeByWeekAndYear(DateTime dateTime) {
+		return (List<ReportStatusByEmployee>) executeQuery(GET_REPORT_STATUS_FOR_EACH_EMPLOYEE_BY_WEEK_AND_YEAR, dateTime);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<WeeklyReport> getReportByEmployeeId(long employeeId, DateTime dateTime) {
+		Query query = manager.createNamedQuery(GET_REPORT_BY_EMPLOYEE_ID);
+		query.setParameter("employeeId", employeeId);
+		return (List<WeeklyReport>) executeQuery(query, dateTime);
+	}
+	
 	private List<?> executeQuery(String queryName, DateTime dateTime) {
 		Query query = manager.createNamedQuery(queryName);
 		return executeQuery(query, dateTime);
