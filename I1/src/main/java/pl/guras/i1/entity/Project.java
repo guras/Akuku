@@ -3,20 +3,19 @@ package pl.guras.i1.entity;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/**
- * @author mgorecki
- */
+@NamedQueries(
+		@NamedQuery(name = Project.SELECT_ALL, query = "from Project"))
 @SuppressWarnings("serial")
 @Entity
 public class Project implements Serializable {
+
+	public static final String SELECT_ALL = "GETALL";
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
 	@Column(nullable = false, length = 255)
 	private String name;
-	
 	@Column(nullable = false, length = 20)
 	private String code;
 

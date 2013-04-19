@@ -13,6 +13,7 @@ public class ProjectReportByEmployee {
 	public ProjectReportByEmployee(String firstname, String lastname, TeamRole teamRole, Color color, String mainAchievements, String doneLastWeek, String nextSteps, String edc, String etc) {
 		employee = new Employee(firstname, lastname, teamRole);
 		
+		this.color = color;
 		this.mainAchievements = mainAchievements;
 		this.doneLastWeek = doneLastWeek;
 		this.nextSteps = nextSteps;

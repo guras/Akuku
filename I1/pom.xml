@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<name>I1</name>
@@ -24,10 +23,9 @@
             </plugin>
         </plugins>
     </build>
-    
+
 	<properties>
 		<spring.version>3.1.3.RELEASE</spring.version>
-		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
 	</properties>
 
 	<dependencies>
@@ -57,6 +55,12 @@
 		</dependency>
  
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>2.5.1</version>
+		</dependency>
+ 
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring.version}</version>
@@ -83,7 +87,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.24</version>
+			<version>5.1.9</version>
 		</dependency>
 	
 		<dependency>
@@ -91,11 +95,47 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.5.0-Final</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.0-Final</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 		
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.2</version>
+		</dependency>
+				
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1-b08</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>	            
-			<version>4.2.0.Final</version>
+			<version>3.4.0.GA</version>
+			<type>jar</type>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>ejb3-persistence</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -111,9 +151,16 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
+			<groupId>com.google.collections</groupId>
+			<artifactId>google-collections</artifactId>
+			<version>1.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
 			<version>2.2</version>
 		</dependency>
+			
 	</dependencies>    
 </project>
