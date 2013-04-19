@@ -17,4 +17,8 @@ public class ProjectDao {
 		Query query = em.createNamedQuery(Project.SELECT_ALL);
 		return (List<Project>) query.getResultList();
 	}
+
+	public Project findById(Integer id) {
+		return (Project) em.find(Project.class, id);
+	}
 }

@@ -23,9 +23,17 @@ public class ProjectReport implements Serializable {
 	public static final String GET_ALL_REPORTS_BY_PROJECT_NAME_AND_WEEK_AND_YEAR = "getAllReportsByProjectNameAndWeekAndYear";
 	
 	public static final String GET_ALL_AVAILABLE_ENGINEERS_BY_WEEK_AND_YEAR = "getAllAvailableEngineersByWeekAndYear";
+
+	public ProjectReport() {
+	}
+	
+	public ProjectReport(WeeklyReport wr) {
+		this.color = Color.GREEN;
+		this.weeklyReport = wr;
+	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	@Enumerated(EnumType.STRING)
@@ -35,7 +43,7 @@ public class ProjectReport implements Serializable {
 	@JoinColumn(name = "project_id", referencedColumnName = "id")
 	private Project project;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "weekly_report_id", referencedColumnName = "id") 
 	private WeeklyReport weeklyReport;
 	

@@ -1,11 +1,17 @@
 package pl.guras.i1.controllers;
 
+import java.beans.PropertyEditorSupport;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,16 +21,18 @@ import pl.guras.i1.dao.ProjectDao;
 import pl.guras.i1.dao.ReportDao;
 import pl.guras.i1.entity.Color;
 import pl.guras.i1.entity.Person;
+import pl.guras.i1.entity.Project;
 import pl.guras.i1.entity.WeeklyReport;
 
 @Controller
 public class HelloController {
 
+	private static final Logger LOG = Logger.getLogger(HelloController.class);
 	private static final String VIEW_WELCOME = "hello";
 	private static final String VIEW_LOGIN = "login";
 	
 	@Autowired
-	private PersonDao dao;
+	private PersonDao personDao;
 	
 	@Autowired
 	private ReportDao reportDao;
@@ -33,12 +41,12 @@ public class HelloController {
 	private ProjectDao projectDao;
 
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
-	public String printWelcome(ModelMap model) {
+	public String createOrUpdateReport(ModelMap model) {
 		Person loggedUser = getLoggedUser();
 
 		WeeklyReport weeklyReport = new WeeklyReport();
 
-		model.addAttribute("personalities", loggedUser.getFirstname()+ " " + loggedUser.getLastname());
+		model.addAttribute("personalities", loggedUser.getFirstname() + " " + loggedUser.getLastname());
 		model.addAttribute("colors", Color.values());
 		model.addAttribute(weeklyReport);
 		model.addAttribute("projects", projectDao.getAll());
@@ -47,12 +55,12 @@ public class HelloController {
 
 	private Person getLoggedUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		return dao.getPerson(user.getUsername());
+		return personDao.getPerson(user.getUsername());
 	}
-	
+
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@Transactional
-	public ModelAndView save(@ModelAttribute("weeklyReport") WeeklyReport weeklyReport) {
+	public ModelAndView save(@Valid @ModelAttribute("weeklyReport") WeeklyReport weeklyReport) {
 		weeklyReport.setUser(getLoggedUser());
 		reportDao.save(weeklyReport);
 		return new ModelAndView(VIEW_WELCOME, "aaa", "No zapisa³em");
@@ -74,11 +82,14 @@ public class HelloController {
 		return VIEW_LOGIN;
 	}
 
-	public PersonDao getDao() {
-		return dao;
-	}
-
-	public void setDao(PersonDao dao) {
-		this.dao = dao;
+	@InitBinder
+	protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+		binder.registerCustomEditor(Project.class, new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) {
+				Project project = projectDao.findById(Integer.parseInt(text));
+				setValue(project);
+			}
+		});
 	}
 }

@@ -12,7 +12,7 @@
         <title>Cześć</title>
     </head>
     <body>
-		
+
 		<h1>${aaa}</h1><br/>
         <h1>Cześć ${personalities}</h1><br/><a href="<c:url value='j_spring_security_logout' />" > Logout</a>
 		<h3>Zaraportuj co robiłeś w ${weeklyReport.week} tygodniu ${weeklyReport.year} roku:</h3>
@@ -23,25 +23,28 @@
 			<form:textarea path="highlights"/><br/>
 			<form:label path="lowlights">Lowlights</form:label><br/>
 			<form:textarea path="lowlights" /><br/>
-			
+
 			<h2>Projekt:</h2>
-			<form:select path="projectReports[0].project">
-				<form:options items="${projects}" itemLabel="name" itemValue="id"></form:options>
-			</form:select>
-			<form:select path="projectReports[0].color">
-				<form:options items="${colors}"></form:options>
-			</form:select>
-			<br/>
-			<form:label path="projectReports[0].mainAchievements">mainAchievements</form:label><br/>
-			<form:input path="projectReports[0].mainAchievements"/><br/>
-			<form:label path="projectReports[0].doneLastWeek">doneLastWeek</form:label><br/>
-			<form:input path="projectReports[0].doneLastWeek"/><br/>
-			<form:label path="projectReports[0].nextSteps">nextSteps</form:label><br/>
-			<form:input path="projectReports[0].nextSteps"/><br/>
-			<form:label path="projectReports[0].edc">edc</form:label><br/>
-			<form:input path="projectReports[0].edc"/><br/>
-			<form:label path="projectReports[0].etc">etc</form:label><br/>
-			<form:input path="projectReports[0].etc"/><br/>
+			<c:forEach var="projectReport" items="projectReports" varStatus="loopNo" begin="0">
+
+				<form:select path="projectReports[${loopNo.index}].project" items="${projects}" itemLabel="name" itemValue="id" />
+
+				<form:select path="projectReports[${loopNo.index}].color">
+					<form:options items="${colors}"></form:options>
+				</form:select><br/>
+
+				<form:label path="projectReports[${loopNo.index}].mainAchievements">mainAchievements</form:label><br/>
+				<form:input path="projectReports[${loopNo.index}].mainAchievements"/><br/>
+				<form:label path="projectReports[${loopNo.index}].doneLastWeek">doneLastWeek</form:label><br/>
+				<form:input path="projectReports[${loopNo.index}].doneLastWeek"/><br/>
+				<form:label path="projectReports[${loopNo.index}].nextSteps">nextSteps</form:label><br/>
+				<form:input path="projectReports[${loopNo.index}].nextSteps"/><br/>
+				<form:label path="projectReports[${loopNo.index}].edc">edc</form:label><br/>
+				<form:input path="projectReports[${loopNo.index}].edc"/><br/>
+				<form:label path="projectReports[${loopNo.index}].etc">etc</form:label><br/>
+				<form:input path="projectReports[${loopNo.index}].etc"/><br/>
+			</c:forEach>
+
 			<input type="submit" value="Wyślij"/>
 		</form:form>
 

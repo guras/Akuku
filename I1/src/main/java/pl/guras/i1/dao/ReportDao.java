@@ -3,6 +3,7 @@ package pl.guras.i1.dao;
 import static pl.guras.i1.entity.ProjectReport.*;
 import java.util.*;
 import javax.persistence.*;
+import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +12,7 @@ import pl.guras.i1.model.*;
 
 @Repository
 public class ReportDao {
+	private static final Logger LOG = Logger.getLogger(ReportDao.class);
 	
 	@PersistenceContext
 	private EntityManager manager;
@@ -51,6 +53,7 @@ public class ReportDao {
 
 	@Transactional
 	public void save(WeeklyReport weeklyReport) {
+		LOG.info(weeklyReport.getProjectReports().get(0).getProject());
 		manager.persist(weeklyReport);
 		manager.flush();
 	}

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.joda.time.DateTime;
 
 /**
@@ -23,15 +25,19 @@ public class WeeklyReport implements Serializable {
 		this.week = dateTime.getWeekOfWeekyear();
 		this.year = dateTime.getYear();
 		this.projectReports = new LinkedList<ProjectReport>();
-		projectReports.add(new ProjectReport());
+		projectReports.add(new ProjectReport(this));
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@NotNull
+	@Size(max = 4096)
 	private String highlights;
 	
+	@NotNull
+	@Size(max = 4096)
 	private String lowlights;
 	
 	@ManyToOne
@@ -44,8 +50,8 @@ public class WeeklyReport implements Serializable {
 	@Column(name = "report_year")
 	private int year;
 	
-	@OneToMany(mappedBy = "weeklyReport")
-	private List<ProjectReport> projectReports;
+	@OneToMany(mappedBy = "weeklyReport", cascade = CascadeType.ALL)
+	private List<ProjectReport> projectReports; 
 	
 	public Long getId() {
 		return id;
