@@ -4,7 +4,12 @@ import static pl.guras.i1.entity.WeeklyReport.*;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
+<<<<<<< HEAD
 import javax.validation.constraints.*;
+=======
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+>>>>>>> f747551535eee24279d8aa928d566fbd395d2be1
 import org.joda.time.DateTime;
 
 @Entity

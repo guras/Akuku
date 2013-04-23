@@ -49,6 +49,7 @@ public class ReportDao {
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
 		
+<<<<<<< HEAD
 		return query.getSingleResult();
 	}
 	
@@ -61,6 +62,8 @@ public class ReportDao {
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
 		
+=======
+>>>>>>> f747551535eee24279d8aa928d566fbd395d2be1
 		return query.getResultList();
 	}
 

@@ -19,4 +19,9 @@ public class ProjectDao {
 	public Project findById(Integer id) {
 		return (Project) em.find(Project.class, id);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> f747551535eee24279d8aa928d566fbd395d2be1
