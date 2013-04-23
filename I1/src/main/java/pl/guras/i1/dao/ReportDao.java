@@ -44,13 +44,12 @@ public class ReportDao {
 	}
 	
 	public WeeklyReport getReportByEmployeeId(long employeeId, DateTime dateTime) {
-		TypedQuery<WeeklyReport> query = manager.createNamedQuery(GET_REPORT_BY_EMPLOYEE_ID, WeeklyReport.class);
+		Query query = manager.createNamedQuery(GET_REPORT_BY_EMPLOYEE_ID);
 		query.setParameter("employeeId", employeeId);
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
 		
-<<<<<<< HEAD
-		return query.getSingleResult();
+		return (WeeklyReport) query.getSingleResult();
 	}
 	
 	private List<?> executeQuery(String queryName, DateTime dateTime) {
@@ -62,8 +61,6 @@ public class ReportDao {
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
 		
-=======
->>>>>>> f747551535eee24279d8aa928d566fbd395d2be1
 		return query.getResultList();
 	}
 

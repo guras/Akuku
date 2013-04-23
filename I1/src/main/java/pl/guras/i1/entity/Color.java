@@ -19,8 +19,4 @@ public enum Color {
 	public int getPriority() {
 		return priority;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f747551535eee24279d8aa928d566fbd395d2be1

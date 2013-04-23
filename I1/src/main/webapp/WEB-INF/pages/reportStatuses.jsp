@@ -4,14 +4,29 @@
 
 <html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<title>Statusy raportów</title>	
 	</head>
+	
 	<body>
 		<h1>Statusy raportów wszystkich pracowników na obecny tydzień:</h1>
+		
 		<ol>
 			<c:forEach var="reportStatus" items="${reportStatuses}">
-				<li>${reportStatus.employee.fullName} - RAPORT<c:if test="${not reportStatus.reportDone}"> NIE</c:if> ZROBIONY</li>
+				<li>
+					${reportStatus.employee.fullName} -
+					<c:choose>
+						<c:when test="${reportStatus.reportDone}">
+							RAPORT ZROBIONY <a href="<c:url value="/reportByEmployee?employeeId=${reportStatus.employee.id}"/>">Obejrzyj</a>
+						</c:when>
+						<c:otherwise>RAPORT NIE ZROBIONY</c:otherwise>
+					</c:choose> 
+				</li>
 			</c:forEach>
 		</ol>
+		
+		<br/>
+		
+		<a href="<c:url value="/weeklyReport"/>">Generuj raport tygodniowy</a>
 	</body>
 </html>

@@ -4,6 +4,7 @@ import java.beans.PropertyEditorSupport;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -40,12 +41,8 @@ public class UserReportManageController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String createOrUpdateReport(ModelMap model) {
 		Person loggedUser = getLoggedUser();
-
-		// TODO tutaj bêdziemy pobieraæ
-		WeeklyReport weeklyReport = null;
-		if (null == weeklyReport) {
-			weeklyReport = new WeeklyReport();
-		} 
+		
+		WeeklyReport weeklyReport = new WeeklyReport();
 
 		model.addAttribute("personalities", loggedUser.getFirstname() + " " + loggedUser.getLastname());
 		model.addAttribute("colors", Color.values());

@@ -4,69 +4,51 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<jsp:include page="reportCSS.jsp"/>
 		<title>Report By Employee</title>
 	</head>
 	<body>
-		<h1 class="title">Weekly report by <br/>Week ${report.week}/${report.year}</h1>
+		<a href="#" onclick="window.history.back();">Powrót</a>
+			
+		<h1 class="title">Weekly report by ${report.user.firstname} ${report.user.lastname}<br/>Week ${report.week}/${report.year}</h1>
 		
 		<h3 class="lowlights">Lowlights</h3>
 		
-		${report.highlightsLowlights}
+		${report.lowlights}
 				
 		<br/>
 		
 		<h3 class="highlights">Highlights</h3>
 		
-		${report.highlightsLowlights}
+		${report.highlights}
 				
 		<br/><br/>
 		
 		<h3 class="projects">Projects:</h3>
 		
-		<c:forEach var="projects" items="${report.projectReports}" >
-			<h4 class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}</h4>
-			
+		<c:forEach var="projectReport" items="${report.projectReports}">
+			<span class="projectName" style="background-color: ${projectReport.color};">${projectReport.project.name}</span>
+						
 			<ul>
 				<li>
-					<c:forEach var="projectReport" varStatus="status" items="${projectSummary.projectReports}">
-						${projectReport.employee.fullName}<c:if test="${not status.last}">, </c:if>
-					</c:forEach> 
+					Main achievements:<br/>${projectReport.mainAchievements}<br/>
 				</li>
 				
 				<li>
-					Main achievements:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.mainAchievements}<br/>
-					</c:forEach> 
+					Done last week:<br/>${projectReport.doneLastWeek}<br/> 
 				</li>
 				
 				<li>
-					Done last week:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.doneLastWeek}<br/> 
-					</c:forEach> 
+					Next steps:<br/>${projectReport.nextSteps}<br/> 
 				</li>
 				
 				<li>
-					Next steps:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.nextSteps}<br/> 
-					</c:forEach> 
+					EDC:<br/>${projectReport.edc} 
 				</li>
 				
 				<li>
-					EDC:<br/>
-					<c:forEach var="projectReport" varStatus="status" items="${projectSummary.projectReports}">
-						${projectReport.edc}<c:if test="${not status.last}">, </c:if> 
-					</c:forEach> 
-				</li>
-				
-				<li>
-					ETC:<br/>
-					<c:forEach var="projectReport" varStatus="status" items="${projectSummary.projectReports}">
-						${projectReport.etc}<c:if test="${not status.last}">, </c:if> 
-					</c:forEach> 
+					ETC:<br/>${projectReport.etc} 
 				</li>
 			</ul>
 		</c:forEach>

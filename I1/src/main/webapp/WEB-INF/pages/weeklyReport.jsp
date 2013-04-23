@@ -4,55 +4,8 @@
 
 <html>
 	<head>
-		<style type="text/css">
-			body {
-				font-family: Calibri;
-				font-size: 11pt;
-			}
-			
-			p, li {
-				margin: 5pt;
-			}
-			
-			.title, .lowlights, .highlights, .projects, .team {
-				font-weight: bold;
-				font-size: 14pt;
-			}
-			
-			.lowlights, .highlights, .projects, .projectName, .team {
-				margin: 10pt, 0pt;
-			}
-			
-			.title {
-				font-family: Tahoma;
-				text-align: center;
-				color: #993366;
-				padding-bottom: 30pt;
-				line-height: 30pt;
-			}
-			
-			.lowlights {
-				color: #FF0000;
-			}
-			
-			.highlights {
-				color: #32CD32;
-			}
-			
-			.team {
-				color: #48D1CC;
-			}
-			
-			.projectName {
-				font-weight: bold;
-				text-decoration: underline;
-				margin-top: 15pt;
-			}
-			
-			.image {
-				margin-top: 50pt;
-			}
-		</style>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<jsp:include page="reportCSS.jsp"/>
 	</head>
 	
 	<body>
@@ -77,7 +30,7 @@
 		<h3 class="projects">Projects:</h3>
 		
 		<c:forEach var="projectSummary" items="${report.projectSummaries}" >
-			<h4 class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}</h4>
+			<span class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}:</span>
 			
 			<ul>
 				<li>
@@ -87,24 +40,30 @@
 				</li>
 				
 				<li>
-					Main achievements:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.mainAchievements}<br/>
-					</c:forEach> 
+					Main achievements:
+					<ul>
+						<c:forEach var="projectReport" items="${projectSummary.projectReports}">
+							<li>${projectReport.mainAchievements}</li>
+						</c:forEach> 
+					</ul>
 				</li>
 				
 				<li>
-					Done last week:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.doneLastWeek}<br/> 
-					</c:forEach> 
+					Done last week:
+					<ul>
+						<c:forEach var="projectReport" items="${projectSummary.projectReports}">
+							<li>${projectReport.doneLastWeek}</li> 
+						</c:forEach>
+					</ul> 
 				</li>
 				
 				<li>
-					Next steps:<br/>
-					<c:forEach var="projectReport" items="${projectSummary.projectReports}">
-						${projectReport.nextSteps}<br/> 
-					</c:forEach> 
+					Next steps:
+					<ul>
+						<c:forEach var="projectReport" items="${projectSummary.projectReports}">
+							<li>${projectReport.nextSteps}</li> 
+						</c:forEach> 
+					</ul>
 				</li>
 				
 				<li>
@@ -135,6 +94,6 @@
 			</c:forEach> 
 		</p>
 		
-		<img class="image" src="<c:url value="/images/report_colors.png"/>"/>		
+		<img class="image" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/images/report_colors.png"/>		
 	</body>
 </html>

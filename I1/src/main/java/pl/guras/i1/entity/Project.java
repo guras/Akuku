@@ -41,8 +41,4 @@ public class Project implements Serializable {
 	public void setCode(String code) {
 		this.code = code;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f747551535eee24279d8aa928d566fbd395d2be1

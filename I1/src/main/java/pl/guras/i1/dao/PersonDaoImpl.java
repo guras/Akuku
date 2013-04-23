@@ -38,10 +38,4 @@ public class PersonDaoImpl implements PersonDao {
 		query.setParameter("username", userName);
 		return (Person)query.getSingleResult();
 	}
-<<<<<<< HEAD
 }
-=======
-	
-
-}
->>>>>>> f747551535eee24279d8aa928d566fbd395d2be1
