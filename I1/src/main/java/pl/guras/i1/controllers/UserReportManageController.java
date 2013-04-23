@@ -4,7 +4,6 @@ import java.beans.PropertyEditorSupport;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.apache.log4j.Logger;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -12,18 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.guras.i1.dao.PersonDao;
-import pl.guras.i1.dao.ProjectDao;
-import pl.guras.i1.dao.ReportDao;
-import pl.guras.i1.entity.Color;
-import pl.guras.i1.entity.Person;
-import pl.guras.i1.entity.Project;
-import pl.guras.i1.entity.WeeklyReport;
+import pl.guras.i1.dao.*;
+import pl.guras.i1.entity.*;
 
 @Controller
 public class UserReportManageController {
