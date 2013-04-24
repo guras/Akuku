@@ -1,6 +1,6 @@
 package pl.guras.i1.security;
 
-public class Role {
+public class SystemRole {
 
 	public static final String USER = "ROLE_USER";
 	

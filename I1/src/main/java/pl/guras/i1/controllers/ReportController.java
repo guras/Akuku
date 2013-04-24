@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.guras.i1.dao.ReportDao;
-import pl.guras.i1.security.Role;
+import pl.guras.i1.security.SystemRole;
 import pl.guras.i1.service.ReportService;
 import pl.guras.i1.util.ReportDownloader;
 
 @Controller
-@Secured(Role.ADMIN)
+@Secured(SystemRole.ADMIN)
 public class ReportController {
 	
 	public static final String DOWNLOAD_REPORT = "downloadReport";
