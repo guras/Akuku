@@ -75,7 +75,6 @@ public class UserReportManageController extends AbstractController {
 				
 				LOGGER.info("W2");
 				return null;
-				
 			}
 		});
 	}
