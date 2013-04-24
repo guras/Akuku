@@ -17,7 +17,7 @@
 					${reportStatus.employee.fullName} -
 					<c:choose>
 						<c:when test="${reportStatus.reportDone}">
-							RAPORT ZROBIONY <a href="<c:url value="/reportByEmployee?employeeId=${reportStatus.employee.id}"/>">Obejrzyj</a>
+							RAPORT ZROBIONY <a href="<c:url value="/reportByEmployee?employeeId=${reportStatus.employee.id}"/>">Podgląd</a>
 						</c:when>
 						<c:otherwise>RAPORT NIE ZROBIONY</c:otherwise>
 					</c:choose> 
@@ -27,6 +27,6 @@
 		
 		<br/>
 		
-		<a href="<c:url value="/weeklyReport"/>">Generuj raport tygodniowy</a>
+		<a href="<c:url value="/downloadReport"/>">Generuj raport tygodniowy</a>
 	</body>
 </html>

@@ -30,6 +30,7 @@
 		<h3 class="projects">Projects:</h3>
 		
 		<c:forEach var="projectSummary" items="${report.projectSummaries}" >
+			<br/>
 			<span class="projectName" style="background-color: ${projectSummary.color};">${projectSummary.projectName}:</span>
 			
 			<ul>
@@ -82,17 +83,17 @@
 			</ul>
 		</c:forEach>
 		
-		<br/>
-		
 		<h3 class="team">Team:</h3>
 		
-		<p>
-			Available Engineers:
-			
-			<c:forEach var="engineer" varStatus="status" items="${report.availableEngineers}">
-				${engineer.fullName}<c:if test="${not status.last}">, </c:if> 
-			</c:forEach> 
-		</p>
+		<c:if test="${not empty report.availableEngineers}">
+			<p>
+				Available Engineers:
+				
+				<c:forEach var="engineer" varStatus="status" items="${report.availableEngineers}">
+					${engineer.fullName}<c:if test="${not status.last}">, </c:if> 
+				</c:forEach> 
+			</p>
+		</c:if>
 		
 		<img class="image" src="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/images/report_colors.png"/>		
 	</body>

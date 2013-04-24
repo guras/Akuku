@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @SuppressWarnings("serial")
-@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query = "select c from Person c where userName = :username") 
+@NamedQuery(name = Person.GET_PERSON_BY_USERNAME, query = "SELECT c FROM Person c WHERE userName = :username") 
 public class Person implements Serializable {
 	
 	public static final String GET_PERSON_BY_USERNAME = "getPersonByUserName";

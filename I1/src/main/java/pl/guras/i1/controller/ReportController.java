@@ -1,4 +1,4 @@
-package pl.guras.i1.controllers;
+package pl.guras.i1.controller;
 
 import javax.servlet.http.*;
 import org.joda.time.DateTime;
@@ -14,7 +14,7 @@ import pl.guras.i1.util.ReportDownloader;
 
 @Controller
 @Secured(SystemRole.ADMIN)
-public class ReportController {
+public class ReportController extends AbstractController {
 	
 	public static final String DOWNLOAD_REPORT = "downloadReport";
 

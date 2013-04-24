@@ -28,6 +28,7 @@
 		<h3 class="projects">Projects:</h3>
 		
 		<c:forEach var="projectReport" items="${report.projectReports}">
+			<br/>
 			<span class="projectName" style="background-color: ${projectReport.color};">${projectReport.project.name}</span>
 						
 			<ul>

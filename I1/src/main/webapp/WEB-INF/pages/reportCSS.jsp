@@ -8,7 +8,7 @@
 	}
 	
 	p, li {
-		margin: 5pt;
+		margin: 3pt;
 	}
 	
 	.title, .lowlights, .highlights, .projects, .team {
@@ -16,8 +16,12 @@
 		font-size: 14pt;
 	}
 	
-	.lowlights, .highlights, .projects, .projectName, .team {
+	.lowlights, .highlights, .projects, .projectName {
 		margin: 10pt, 0pt;
+	}
+	
+	.team, .image {
+		margin-top: 50pt;
 	}
 	
 	.title {
@@ -43,10 +47,5 @@
 	.projectName {
 		font-weight: bold;
 		text-decoration: underline;
-		margin-top: 15pt;
-	}
-	
-	.image {
-		margin-top: 50pt;
 	}
 </style>

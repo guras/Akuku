@@ -6,7 +6,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.*;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
-import pl.guras.i1.controllers.ReportController;
+import pl.guras.i1.controller.ReportController;
 
 public class ReportDownloader {
 	

@@ -13,7 +13,7 @@ import org.joda.time.DateTime;
 @NamedQueries
 ({
 	@NamedQuery(name = GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.HighlightsLowlights(wr.highlights, wr.lowlights) FROM WeeklyReport AS wr WHERE wr.week = :week AND wr.year = :year"),
-	@NamedQuery(name = GET_REPORT_STATUS_FOR_EACH_EMPLOYEE_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.ReportStatusByEmployee(u.id, u.firstname, u.lastname, u.teamRole, CASE WHEN (SELECT COUNT(r) FROM WeeklyReport AS r WHERE r.user.id = u.id AND r.week = :week AND r.year = :year) > 0 THEN TRUE ELSE FALSE END) FROM WeeklyReport AS wr RIGHT OUTER JOIN wr.user AS u"),
+	@NamedQuery(name = GET_REPORT_STATUS_FOR_EACH_EMPLOYEE_BY_WEEK_AND_YEAR, query = "SELECT NEW pl.guras.i1.model.ReportStatusByEmployee(u.id, u.firstname, u.lastname, u.teamRole, CASE WHEN (SELECT COUNT(r) FROM WeeklyReport AS r WHERE r.user.id = u.id AND r.week = :week AND r.year = :year) > 0 THEN TRUE ELSE FALSE END) FROM WeeklyReport AS wr RIGHT OUTER JOIN wr.user AS u WHERE u.teamRole <> 'TEAM_LEADER'"),
 	@NamedQuery(name = GET_REPORT_BY_EMPLOYEE_ID, query = "SELECT wr FROM WeeklyReport AS wr JOIN FETCH wr.user AS u JOIN FETCH wr.projectReports AS pr WHERE u.id = :employeeId AND wr.week = :week AND wr.year = :year")
 })
 public class WeeklyReport implements Serializable {
