@@ -16,6 +16,12 @@ public class ReportDao {
 	@PersistenceContext
 	private EntityManager manager;
 	
+	@Transactional
+	public void save(WeeklyReport weeklyReport) {
+		manager.persist(weeklyReport);
+		manager.flush();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<HighlightsLowlights> getAllHighlightsLowlightsByWeekAndYear(DateTime dateTime) {
 		return (List<HighlightsLowlights>) executeQuery(GET_ALL_HIGHLIGHTS_LOWLIGHTS_BY_WEEK_AND_YEAR, dateTime);
@@ -63,11 +69,5 @@ public class ReportDao {
 	private void setDateTimeParametersForQuery(Query query, DateTime dateTime) {
 		query.setParameter("week", dateTime.weekOfWeekyear().get());
 		query.setParameter("year", dateTime.year().get());
-	}
-
-	@Transactional
-	public void save(WeeklyReport weeklyReport) {
-		manager.persist(weeklyReport);
-		manager.flush();
 	}
 }
