@@ -25,13 +25,13 @@ public class LoginController extends AbstractController {
 	@RequestMapping(value = LOGIN_SUCCEED, method = RequestMethod.GET)
 	public String loginSucceed() {
 		Person loggedUser = getLoggedUser();
-		String redirection = UrlBasedViewResolver.REDIRECT_URL_PREFIX;
+		String redirect = UrlBasedViewResolver.REDIRECT_URL_PREFIX;
 		
 		if (loggedUser.getTeamRole().equals(TeamRole.TEAM_LEADER)) {
-			return redirection + ReportController.REPORT_STATUSES;
+			return redirect + ReportController.REPORT_STATUSES;
 		}
 		
-		return redirection + UserReportManageController.WELCOME;
+		return redirect + UserReportManageController.WELCOME;
 	}
 
 	@RequestMapping(value = LOGIN_FAILED, method = RequestMethod.GET)
@@ -41,7 +41,7 @@ public class LoginController extends AbstractController {
 	}
 
 	@RequestMapping(value = LOGOUT, method = RequestMethod.GET)
-	public String logut() {
+	public String logout() {
 		return LOGIN;
 	}
 }

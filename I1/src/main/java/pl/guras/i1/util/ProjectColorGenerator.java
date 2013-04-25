@@ -13,7 +13,6 @@ public class ProjectColorGenerator {
 	public static String generateProjectColor(List<ProjectReportByEmployee> projectReports) {
 		Multiset<Color> colors = EnumMultiset.create(Collections2.transform(projectReports, COLOR_FUNCTION));
 		Color color = Collections.max(colors, new ColorComparator(colors));
-		
 		return color.getValue();
 	}
 	
