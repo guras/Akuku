@@ -9,6 +9,8 @@
 	</head>
 	
 	<body>
+		<a href="<c:url value='j_spring_security_logout'/>">Logout</a>
+		
 		<h1>Statusy raportów wszystkich pracowników na obecny tydzień:</h1>
 		
 		<ol>

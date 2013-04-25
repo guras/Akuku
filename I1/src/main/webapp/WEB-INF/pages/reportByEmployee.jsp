@@ -9,8 +9,10 @@
 		<title>Report By Employee</title>
 	</head>
 	<body>
-		<a href="#" onclick="window.history.back();">Powrót</a>
-			
+		<a href="javascript:window.history.back();">Powrót</a>
+		
+		<a href="<c:url value='j_spring_security_logout'/>">Logout</a>
+		
 		<h1 class="title">Weekly report by ${report.user.firstname} ${report.user.lastname}<br/>Week ${report.week}/${report.year}</h1>
 		
 		<h3 class="lowlights">Lowlights</h3>
@@ -29,7 +31,7 @@
 		
 		<c:forEach var="projectReport" items="${report.projectReports}">
 			<br/>
-			<span class="projectName" style="background-color: ${projectReport.color};">${projectReport.project.name}</span>
+			<span class="projectName" style="background-color: ${projectReport.color.value};">${projectReport.project.name}</span>
 						
 			<ul>
 				<li>
